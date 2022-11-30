@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.schedule_meeting">
+    package="com.example.googlesignin">
    <application
         android:label="schedule_meeting"
         android:name="${applicationName}"

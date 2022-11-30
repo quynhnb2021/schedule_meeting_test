@@ -1,4 +1,4 @@
-package com.example.schedule_meeting
+package com.example.googlesignin
 
 import io.flutter.embedding.android.FlutterActivity
 
