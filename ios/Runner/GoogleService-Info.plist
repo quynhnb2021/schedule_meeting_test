@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>737326598104-6k392kbs8ckl1vovjmb8elbvnsg3es2u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.737326598104-6k392kbs8ckl1vovjmb8elbvnsg3es2u</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>737326598104-49b9gqj8e798u86qkjqiq4vt877tg6tf.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBUnc51BZvlivB_hjyaH3Ub6u_j6NlZIYE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>737326598104</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.scheduleMeeting</string>
+	<key>PROJECT_ID</key>
+	<string>blog-78b55</string>
+	<key>STORAGE_BUCKET</key>
+	<string>blog-78b55.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:737326598104:ios:3d13ef84104fc324cf14ad</string>
+</dict>
+</plist>

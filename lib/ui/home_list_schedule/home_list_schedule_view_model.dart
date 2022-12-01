@@ -1,4 +1,4 @@
-import 'package:schedule_meeting/data/model/remote/response/blog_response.dart';
+import 'package:schedule_meeting/data/model/remote/response/schedule_response.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:schedule_meeting/ui/base/base_view_model.dart';
@@ -10,7 +10,7 @@ class HomeScheduleViewModel extends BaseViewModel {
   Stream<QuerySnapshot>? schedulesStream;
   getBlogs(String? type, String? mail) async {
     setBusy(true);
-    await appApiHelper.getSchedule('blogs', type, mail, (data) {
+    await appApiHelper.getSchedule('schedules', type, mail, (data) {
       print(data);
       schedulesStream = data;
       setBusy(false);

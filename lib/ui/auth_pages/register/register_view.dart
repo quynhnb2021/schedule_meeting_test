@@ -38,14 +38,14 @@ class RegisterView extends BaseView<RegisterViewModel> {
     }
 
     Future<void> onRegister() async {
-      await viewModel.tapRegister(context);
+      await viewModel.tapRegister(context, ref);
     }
 
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          body: ContainerWithLoading<LoginViewModel>(
-              provider: loginViewModelProvider,
+          body: ContainerWithLoading(
+              provider: registerViewModelProvider,
               child: GestureDetector(
                 onTap: () {
                   FocusScope.of(context).unfocus();

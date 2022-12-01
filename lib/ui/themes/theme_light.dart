@@ -38,13 +38,18 @@ class AppThemeLight {
       ),
       // primarySwatch: Colors.grey,
       hintColor: AppColors.contentPlaceholder,
+      dialogBackgroundColor: const Color(0xFFF3F1F1),
+      secondaryHeaderColor: const Color(0xFFF3F3F3),
+      // secondaryHeaderColor: const Color(0xFFF3F1F1),
       disabledColor: AppColors.disableColor,
       buttonColor: AppColors.colorDivider,
       primaryColor: Colors.black,
       brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.backGroundColor,
       backgroundColor: AppColors.textThemeDarkColor,
-      // dividerColor: Colors.white54,
+      cardColor: AppColors.dividerColor,
+      accentColor: AppColors.primaryTextColor,
+      shadowColor: Colors.grey.shade300,
     );
   }
 }

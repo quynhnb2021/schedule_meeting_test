@@ -24,11 +24,10 @@ abstract class FirebaseHelper {
   Future<void> createChedules(
       String nameBlog,
       String mail,
-      String image,
-      String authorName,
-      String title,
-      String description,
-      String type,
+      String date,
+      String duration,
+      String partnerName,
+      String timeSlot,
       BuildContext context,
       Function? callBackData);
 
@@ -84,7 +83,7 @@ class FirebaseManager extends FirebaseHelper {
 
       userCredential.user;
       if (userCredential.user != null) {
-        await userCredential.user!.updateDisplayName('displayName');
+        await userCredential.user!.updateDisplayName(name);
         String? idToken = await userCredential.user?.getIdToken(true);
         print("idToken : $idToken");
         callBackData?.call(userCredential);
@@ -126,23 +125,25 @@ class FirebaseManager extends FirebaseHelper {
   Future<void> createChedules(
       String nameBlog,
       String mail,
-      String image,
-      String authorName,
-      String title,
-      String description,
-      String type,
+      String date,
+      String duration,
+      String partnerName,
+      String timeSlot,
       BuildContext context,
       Function? callBackData) async {
-    // TODO: implement createBlog
     Map<String, String> blogData = {
-      "imgUrl": image,
       "mail": mail,
-      "authorName": authorName,
-      "title": title,
-      "desc": description,
-      "type": type
+      "date": date,
+      "duration": duration,
+      "partnerName": partnerName,
+      "timeSlot": timeSlot,
     };
-    await db.collection(nameBlog).add(blogData).catchError((e) {
+    await db
+        .collection("datas")
+        .doc(mail)
+        .collection(nameBlog)
+        .add(blogData)
+        .catchError((e) {
       AppFunc.showAlertDialog(context, message: e.message ?? '');
     });
     callBackData?.call('Ok');
@@ -151,29 +152,31 @@ class FirebaseManager extends FirebaseHelper {
   @override
   Future<void> getSchedule(
       String name, String? type, String? mail, Function? callBackData) async {
-    // TODO: implement getBlog
-    if (mail == null) {
-      if (type == null) {
-        Stream collectionStream = await db.collection(name).snapshots();
-        callBackData?.call(collectionStream);
-      } else {
-        Stream collectionStream = await db
-            .collection(name)
-            .where('type', isEqualTo: type)
-            .snapshots();
-        callBackData?.call(collectionStream);
-      }
-    } else {
-      Stream collectionStream =
-          await db.collection(name).where('mail', isEqualTo: mail).snapshots();
-      callBackData?.call(collectionStream);
-    }
+    Stream collectionStream = await db
+        .collection('datas')
+        .doc('bao@gmail.com')
+        .collection(name)
+        .snapshots();
+    callBackData?.call(collectionStream);
+    //   if (mail == null) {
+    //     if (type == null) {
+    //       Stream collectionStream = await db.collection(name).snapshots();
+    //       callBackData?.call(collectionStream);
+    //     } else {
+    //       Stream collectionStream =
+    //           await db.collection('datas').doc(mail).collection(name).snapshots();
+    //       callBackData?.call(collectionStream);
+    //     }
+    //   } else {
+    //     Stream collectionStream =
+    //         await db.collection(name).where('mail', isEqualTo: mail).snapshots();
+    //     callBackData?.call(collectionStream);
+    //   }
   }
 
   @override
   Future<void> signInGoogle(
       {Function(String email)? authSuccess, Function? authError}) async {
-    // TODO: implement signInGoogle
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       // Obtain the auth details from the request
@@ -189,7 +192,6 @@ class FirebaseManager extends FirebaseHelper {
 
   @override
   Future<void> signOut(Function signedOut) async {
-    // TODO: implement signOut
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signOut();
       // Obtain the auth details from the request

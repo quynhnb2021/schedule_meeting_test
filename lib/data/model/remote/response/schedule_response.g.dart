@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'blog_response.dart';
+part of 'schedule_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BlogResponse _$$_BlogResponseFromJson(Map<String, dynamic> json) =>
-    _$_BlogResponse(
+_$_ScheduleResponse _$$_ScheduleResponseFromJson(Map<String, dynamic> json) =>
+    _$_ScheduleResponse(
       authorName: json['authorName'] as String? ?? '',
       desc: json['desc'] as String? ?? '',
       imgUrl: json['imgUrl'] as String? ?? '',
@@ -15,7 +15,7 @@ _$_BlogResponse _$$_BlogResponseFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$_BlogResponseToJson(_$_BlogResponse instance) =>
+Map<String, dynamic> _$$_ScheduleResponseToJson(_$_ScheduleResponse instance) =>
     <String, dynamic>{
       'authorName': instance.authorName,
       'desc': instance.desc,

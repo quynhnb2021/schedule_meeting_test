@@ -3,9 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:schedule_meeting/ui/base/base_view_model.dart';
 
 class SettingViewModel extends BaseViewModel {
-  SettingViewModel(Reader reader) : super(reader) {
-    getUserInfor();
-  }
+  SettingViewModel(Reader reader) : super(reader);
 
   String mail = '';
   bool isDarkModeActive = false;
@@ -19,6 +17,7 @@ class SettingViewModel extends BaseViewModel {
   getUserInfor() async {
     final data = await sharedPref.getMail();
     mail = data;
+    notifyListeners();
   }
 
   tapLogout(Function callback) async {

@@ -8,6 +8,7 @@ import 'package:schedule_meeting/ui/auth_pages/login/login_view_model.dart';
 import 'package:schedule_meeting/ui/base/base_view.dart';
 import 'package:schedule_meeting/ui/base/component/button/button.dart';
 import 'package:schedule_meeting/ui/base/component/loading/container_with_loading.dart';
+import 'package:schedule_meeting/ui/base/hook/use_effect_async.dart';
 import 'package:schedule_meeting/ui/base/hook/use_router.dart';
 import 'package:schedule_meeting/ui/themes/text_styles.dart';
 
@@ -18,24 +19,12 @@ class LoginView extends BaseView<LoginViewModel> {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
     // final trans = useLocalizations();
-    final TextEditingController usernameController = useTextEditingController();
-    final TextEditingController passwordController = useTextEditingController();
-    final enableLogin = useState(false);
+
     final LoginViewModel loginViewModel = ref.watch(loginViewModelProvider);
 
-    bool checkInputsNotExistEmpty() {
-      return usernameController.text.isNotEmpty &&
-          passwordController.text.isNotEmpty;
-    }
-
-    void onChangeInut() {
-      if (enableLogin.value && !checkInputsNotExistEmpty()) {
-        enableLogin.value = false;
-      }
-      if (!enableLogin.value && checkInputsNotExistEmpty()) {
-        enableLogin.value = true;
-      }
-    }
+    // useEffectAsync(() async {
+    //   onChangeInut();
+    // });
 
     // useEffect(() {
     //   usernameController.text = 'bao@gmail.com';
@@ -44,26 +33,25 @@ class LoginView extends BaseView<LoginViewModel> {
     // });
 
     Future<void> onLoggin() async {
-      await loginViewModel.tapLogin(
-          usernameController.text.trim(), passwordController.text, context, () {
+      await loginViewModel.tapLogin(context, () {
         router.push(
           const HomeRoute(),
         );
       });
     }
 
-    Future<void> onGoogleSignIn() async {
-      await loginViewModel.tapGoogleSignIn((data) {
-        router.push(
-          const HomeRoute(),
-        );
-      });
-    }
+    // Future<void> onGoogleSignIn() async {
+    //   await loginViewModel.tapGoogleSignIn((data) {
+    //     router.push(
+    //       const HomeRoute(),
+    //     );
+    //   });
+    // }
 
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          body: ContainerWithLoading<LoginViewModel>(
+          body: ContainerWithLoading(
               provider: loginViewModelProvider,
               child: GestureDetector(
                 onTap: () {
@@ -94,22 +82,22 @@ class LoginView extends BaseView<LoginViewModel> {
                             height: 100,
                           ),
                           TextInputPassword(
-                            controller: usernameController,
+                            controller: loginViewModel.usernameController,
                             hintText: "Enter mail",
                             type: TextInputType.emailAddress,
                             securityType: InputSecurityType.email,
                             onChanged: (String value) {
-                              onChangeInut();
+                              loginViewModel.onChangeInut();
                             },
                           ),
                           const SizedBox(height: 16),
                           TextInputPassword(
                             hintText: "Enter password",
                             type: TextInputType.emailAddress,
-                            controller: passwordController,
+                            controller: loginViewModel.passwordController,
                             securityType: InputSecurityType.password,
                             onChanged: (String value) {
-                              onChangeInut();
+                              loginViewModel.onChangeInut();
                             },
                           ),
                           const SizedBox(height: 20),
@@ -117,7 +105,7 @@ class LoginView extends BaseView<LoginViewModel> {
                           Button(
                             title: "Login",
                             onPress: onLoggin,
-                            enable: enableLogin.value,
+                            enable: loginViewModel.enableLogin,
                           ),
                           const SizedBox(
                             height: 16,

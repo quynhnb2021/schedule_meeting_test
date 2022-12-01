@@ -1,3 +1,4 @@
+import 'package:schedule_meeting/route/app_route.gr.dart';
 import 'package:schedule_meeting/ui/base/common/app_func.dart';
 import 'package:schedule_meeting/ui/base/common/network_image.dart';
 import 'package:schedule_meeting/ui/base/common/search_view.dart';
@@ -88,11 +89,10 @@ class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
                                   Map<String, dynamic> data =
                                       document.data()! as Map<String, dynamic>;
                                   return SchedulesTile(
-                                    authorName: data['authorName'],
-                                    description: data['desc'],
-                                    imgUrl: data['imgUrl'] ??
-                                        'https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/03_2019/nhung-bai-bien-dep-nhat-viet-nam-2.jpg',
-                                    title: data['title'],
+                                    date: data['date'],
+                                    duration: data['duration'],
+                                    partnerName: data['partnerName'] ?? '',
+                                    timeSlot: data['timeSlot'],
                                   );
                                 }).toList(),
                               );
@@ -108,7 +108,9 @@ class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          router.push(const CreateScheduleRoute());
+        },
         tooltip: 'Add Schedule task',
         child: const Icon(Icons.add),
       ),
@@ -128,12 +130,12 @@ class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
 }
 
 class SchedulesTile extends StatelessWidget {
-  String imgUrl, title, description, authorName;
+  String date, duration, partnerName, timeSlot;
   SchedulesTile(
-      {required this.imgUrl,
-      required this.title,
-      required this.description,
-      required this.authorName});
+      {required this.date,
+      required this.duration,
+      required this.partnerName,
+      required this.timeSlot});
 
   @override
   Widget build(BuildContext context) {
@@ -142,14 +144,6 @@ class SchedulesTile extends StatelessWidget {
       height: 150,
       child: Stack(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: CustomNetworkImage(
-              image: imgUrl,
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-            ),
-          ),
           Container(
             height: 170,
             decoration: BoxDecoration(
@@ -163,7 +157,12 @@ class SchedulesTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  title,
+                  date,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  duration,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 ),
@@ -171,13 +170,13 @@ class SchedulesTile extends StatelessWidget {
                   height: 4,
                 ),
                 Text(
-                  description,
+                  partnerName,
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
                   height: 4,
                 ),
-                Text(authorName)
+                Text(timeSlot)
               ],
             ),
           )

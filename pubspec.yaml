@@ -100,6 +100,11 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
+  build_runner: ^2.2.0
+
+  retrofit_generator: ^4.0.3+1
+
+  auto_route_generator: ^5.0.1
   flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the

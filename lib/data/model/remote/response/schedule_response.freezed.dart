@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'blog_response.dart';
+part of 'schedule_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ScheduleResponse _$BlogResponseFromJson(Map<String, dynamic> json) {
-  return _BlogResponse.fromJson(json);
+ScheduleResponse _$ScheduleResponseFromJson(Map<String, dynamic> json) {
+  return _ScheduleResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BlogResponse {
+mixin _$ScheduleResponse {
   @JsonKey(name: 'authorName')
   String get authorName => throw _privateConstructorUsedError;
   @JsonKey(name: 'desc')
@@ -33,15 +33,16 @@ mixin _$BlogResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BlogResponseCopyWith<ScheduleResponse> get copyWith =>
+  $ScheduleResponseCopyWith<ScheduleResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BlogResponseCopyWith<$Res> {
-  factory $BlogResponseCopyWith(
+abstract class $ScheduleResponseCopyWith<$Res> {
+  factory $ScheduleResponseCopyWith(
           ScheduleResponse value, $Res Function(ScheduleResponse) then) =
-      _$BlogResponseCopyWithImpl<$Res>;
+      _$ScheduleResponseCopyWithImpl<$Res, ScheduleResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'authorName') String authorName,
       @JsonKey(name: 'desc') String desc,
@@ -51,53 +52,57 @@ abstract class $BlogResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BlogResponseCopyWithImpl<$Res> implements $BlogResponseCopyWith<$Res> {
-  _$BlogResponseCopyWithImpl(this._value, this._then);
+class _$ScheduleResponseCopyWithImpl<$Res, $Val extends ScheduleResponse>
+    implements $ScheduleResponseCopyWith<$Res> {
+  _$ScheduleResponseCopyWithImpl(this._value, this._then);
 
-  final ScheduleResponse _value;
   // ignore: unused_field
-  final $Res Function(ScheduleResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authorName = freezed,
-    Object? desc = freezed,
-    Object? imgUrl = freezed,
-    Object? title = freezed,
-    Object? type = freezed,
+    Object? authorName = null,
+    Object? desc = null,
+    Object? imgUrl = null,
+    Object? title = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
-      authorName: authorName == freezed
+      authorName: null == authorName
           ? _value.authorName
           : authorName // ignore: cast_nullable_to_non_nullable
               as String,
-      desc: desc == freezed
+      desc: null == desc
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
               as String,
-      imgUrl: imgUrl == freezed
+      imgUrl: null == imgUrl
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_BlogResponseCopyWith<$Res>
-    implements $BlogResponseCopyWith<$Res> {
-  factory _$$_BlogResponseCopyWith(
-          _$_BlogResponse value, $Res Function(_$_BlogResponse) then) =
-      __$$_BlogResponseCopyWithImpl<$Res>;
+abstract class _$$_ScheduleResponseCopyWith<$Res>
+    implements $ScheduleResponseCopyWith<$Res> {
+  factory _$$_ScheduleResponseCopyWith(
+          _$_ScheduleResponse value, $Res Function(_$_ScheduleResponse) then) =
+      __$$_ScheduleResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'authorName') String authorName,
       @JsonKey(name: 'desc') String desc,
@@ -107,42 +112,40 @@ abstract class _$$_BlogResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BlogResponseCopyWithImpl<$Res>
-    extends _$BlogResponseCopyWithImpl<$Res>
-    implements _$$_BlogResponseCopyWith<$Res> {
-  __$$_BlogResponseCopyWithImpl(
-      _$_BlogResponse _value, $Res Function(_$_BlogResponse) _then)
-      : super(_value, (v) => _then(v as _$_BlogResponse));
+class __$$_ScheduleResponseCopyWithImpl<$Res>
+    extends _$ScheduleResponseCopyWithImpl<$Res, _$_ScheduleResponse>
+    implements _$$_ScheduleResponseCopyWith<$Res> {
+  __$$_ScheduleResponseCopyWithImpl(
+      _$_ScheduleResponse _value, $Res Function(_$_ScheduleResponse) _then)
+      : super(_value, _then);
 
-  @override
-  _$_BlogResponse get _value => super._value as _$_BlogResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authorName = freezed,
-    Object? desc = freezed,
-    Object? imgUrl = freezed,
-    Object? title = freezed,
-    Object? type = freezed,
+    Object? authorName = null,
+    Object? desc = null,
+    Object? imgUrl = null,
+    Object? title = null,
+    Object? type = null,
   }) {
-    return _then(_$_BlogResponse(
-      authorName: authorName == freezed
+    return _then(_$_ScheduleResponse(
+      authorName: null == authorName
           ? _value.authorName
           : authorName // ignore: cast_nullable_to_non_nullable
               as String,
-      desc: desc == freezed
+      desc: null == desc
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
               as String,
-      imgUrl: imgUrl == freezed
+      imgUrl: null == imgUrl
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
@@ -152,16 +155,16 @@ class __$$_BlogResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BlogResponse implements _BlogResponse {
-  const _$_BlogResponse(
+class _$_ScheduleResponse implements _ScheduleResponse {
+  const _$_ScheduleResponse(
       {@JsonKey(name: 'authorName') this.authorName = '',
       @JsonKey(name: 'desc') this.desc = '',
       @JsonKey(name: 'imgUrl') this.imgUrl = '',
       @JsonKey(name: 'title') this.title = '',
       @JsonKey(name: 'type') this.type = ''});
 
-  factory _$_BlogResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_BlogResponseFromJson(json);
+  factory _$_ScheduleResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_ScheduleResponseFromJson(json);
 
   @override
   @JsonKey(name: 'authorName')
@@ -181,55 +184,51 @@ class _$_BlogResponse implements _BlogResponse {
 
   @override
   String toString() {
-    return 'BlogResponse(authorName: $authorName, desc: $desc, imgUrl: $imgUrl, title: $title, type: $type)';
+    return 'ScheduleResponse(authorName: $authorName, desc: $desc, imgUrl: $imgUrl, title: $title, type: $type)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BlogResponse &&
-            const DeepCollectionEquality()
-                .equals(other.authorName, authorName) &&
-            const DeepCollectionEquality().equals(other.desc, desc) &&
-            const DeepCollectionEquality().equals(other.imgUrl, imgUrl) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.type, type));
+            other is _$_ScheduleResponse &&
+            (identical(other.authorName, authorName) ||
+                other.authorName == authorName) &&
+            (identical(other.desc, desc) || other.desc == desc) &&
+            (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(authorName),
-      const DeepCollectionEquality().hash(desc),
-      const DeepCollectionEquality().hash(imgUrl),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(type));
+  int get hashCode =>
+      Object.hash(runtimeType, authorName, desc, imgUrl, title, type);
 
   @JsonKey(ignore: true)
   @override
-  _$$_BlogResponseCopyWith<_$_BlogResponse> get copyWith =>
-      __$$_BlogResponseCopyWithImpl<_$_BlogResponse>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_ScheduleResponseCopyWith<_$_ScheduleResponse> get copyWith =>
+      __$$_ScheduleResponseCopyWithImpl<_$_ScheduleResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BlogResponseToJson(
+    return _$$_ScheduleResponseToJson(
       this,
     );
   }
 }
 
-abstract class _BlogResponse implements ScheduleResponse {
-  const factory _BlogResponse(
+abstract class _ScheduleResponse implements ScheduleResponse {
+  const factory _ScheduleResponse(
       {@JsonKey(name: 'authorName') final String authorName,
       @JsonKey(name: 'desc') final String desc,
       @JsonKey(name: 'imgUrl') final String imgUrl,
       @JsonKey(name: 'title') final String title,
-      @JsonKey(name: 'type') final String type}) = _$_BlogResponse;
+      @JsonKey(name: 'type') final String type}) = _$_ScheduleResponse;
 
-  factory _BlogResponse.fromJson(Map<String, dynamic> json) =
-      _$_BlogResponse.fromJson;
+  factory _ScheduleResponse.fromJson(Map<String, dynamic> json) =
+      _$_ScheduleResponse.fromJson;
 
   @override
   @JsonKey(name: 'authorName')
@@ -248,6 +247,6 @@ abstract class _BlogResponse implements ScheduleResponse {
   String get type;
   @override
   @JsonKey(ignore: true)
-  _$$_BlogResponseCopyWith<_$_BlogResponse> get copyWith =>
+  _$$_ScheduleResponseCopyWith<_$_ScheduleResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

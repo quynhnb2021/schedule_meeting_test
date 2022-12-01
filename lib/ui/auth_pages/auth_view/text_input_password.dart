@@ -63,6 +63,7 @@ class TextInputPassword extends HookConsumerWidget {
                 onChanged?.call(value);
                 isHasData.value = value.isNotEmpty;
               },
+              textInputAction: TextInputAction.next,
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.zero,

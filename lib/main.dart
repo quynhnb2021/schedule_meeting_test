@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:schedule_meeting/data/model/local/app_preferences_helper.dart';
 import 'package:schedule_meeting/di/view_model_provider.dart';
+import 'package:schedule_meeting/firebase_options.dart';
 import 'package:schedule_meeting/route/app_route.gr.dart';
 import 'package:schedule_meeting/ui/base/hook/use_effect_async.dart';
 import 'package:schedule_meeting/ui/setting_pages/setting/setting_view_model.dart';
@@ -16,7 +17,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
   // Ideal time to initialize
   // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   // await dotenv.load(fileName: kReleaseMode ? ".env-release" : ".env-dev");

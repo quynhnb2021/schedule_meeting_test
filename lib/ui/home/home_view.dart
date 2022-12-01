@@ -8,6 +8,7 @@ import 'package:schedule_meeting/di/view_model_provider.dart';
 import 'package:schedule_meeting/ui/base/base_view.dart';
 import 'package:schedule_meeting/ui/home/home_view_model.dart';
 import 'package:schedule_meeting/ui/home/tab_type.dart';
+import 'package:schedule_meeting/ui/schedule_date/schedule_date_view.dart';
 import 'package:schedule_meeting/ui/setting_pages/setting/setting_view.dart';
 import 'package:schedule_meeting/ui/themes/app_color.dart';
 import 'package:schedule_meeting/ui/themes/text_styles.dart';
@@ -32,7 +33,7 @@ class HomeView extends BaseView<HomeViewModel> {
           // const OverviewView(),
           // const FleetView(),
           const HomeScheduleView(),
-          const CreateScheduleView(),
+          const ScheduleDateView(),
 
           const SettingView(),
         ][idMain.value],

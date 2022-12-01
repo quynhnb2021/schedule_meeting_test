@@ -5,6 +5,7 @@ import 'package:schedule_meeting/ui/auth_pages/splash/splash_view_model.dart';
 import 'package:schedule_meeting/ui/home_list_schedule/home_list_schedule_view_model.dart';
 import 'package:schedule_meeting/ui/create_schedule/create_schedule_view_model.dart';
 import 'package:schedule_meeting/ui/home/home_view_model.dart';
+import 'package:schedule_meeting/ui/schedule_date/schedule_date_view_model.dart';
 import 'package:schedule_meeting/ui/setting_pages/general_pages/dart_mode/dart_mode_view_model.dart';
 import 'package:schedule_meeting/ui/setting_pages/setting/setting_view_model.dart';
 
@@ -35,9 +36,15 @@ final homeScheduleViewModelProvider =
               ref.read,
             ));
 
-final createBlogViewModelProvider =
+final createScheduleViewModelProvider =
     ChangeNotifierProvider<CreateScheduleViewViewModel>(
         (ref) => CreateScheduleViewViewModel(
+              ref.read,
+            ));
+
+final scheduledateViewModelProvider =
+    ChangeNotifierProvider<ScheduleDateViewModel>(
+        (ref) => ScheduleDateViewModel(
               ref.read,
             ));
 

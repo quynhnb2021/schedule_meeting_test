@@ -52,7 +52,10 @@ class AppBarCustom extends HookConsumerWidget implements PreferredSizeWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Padding(padding: EdgeInsets.only(left: 20)),
-                    const Icon(Icons.arrow_back),
+                    Icon(
+                      Icons.arrow_back,
+                      color: Theme.of(context).primaryColor,
+                    ),
                     const SizedBox(
                       width: 6,
                     ),

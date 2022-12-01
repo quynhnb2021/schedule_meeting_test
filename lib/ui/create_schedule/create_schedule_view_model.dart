@@ -2,92 +2,100 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:schedule_meeting/ui/base/base_view_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:time_planner/time_planner.dart';
+import 'package:intl/intl.dart';
 
 class CreateScheduleViewViewModel extends BaseViewModel {
   CreateScheduleViewViewModel(Reader reader) : super(reader);
-  List<TimePlannerTask> tasks = [];
 
-  final authorTF = TextEditingController();
-  final titleTF = TextEditingController();
-  final descriptionTF = TextEditingController();
   final ImagePicker _picker = ImagePicker();
-  String type = 'Sports';
-  String urlImg = '';
+
   File? selectedImage;
+  String dateCurrent = "";
+  String duration = "10";
+  String partnerName = "Quynh";
+  String timeSlot = "8h - 12h";
+  final partners = ["Quynh", "Long", "Giang", "Lan", "Ngoc", "Anh", "Kaka"];
+  final now = DateTime.now();
+  BuildContext? context;
+  final durations = ["15", "30", "60", "120", "180", "240", "300"];
+  final timeSlots = ["4h - 8h", "8h - 12h", "12h - 16h", "16h - 20h"];
 
-  addTask(BuildContext context) {
-    List<Color?> colors = [
-      Colors.purple,
-      Colors.blue,
-      Colors.green,
-      Colors.orange,
-      Colors.lime[600]
-    ];
-
-    tasks.add(
-      TimePlannerTask(
-        color: colors[Random().nextInt(colors.length)],
-        dateTime: TimePlannerDateTime(
-            day: Random().nextInt(14),
-            hour: Random().nextInt(18) + 6,
-            minutes: Random().nextInt(60)),
-        minutesDuration: Random().nextInt(90) + 30,
-        daysDuration: Random().nextInt(4) + 1,
-        onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('You click on time planner object')));
-        },
-        child: Text(
-          'this is a demo',
-          style: TextStyle(color: Colors.grey[350], fontSize: 12),
-        ),
-      ),
-    );
+  getContext(BuildContext c) {
+    context = c;
     notifyListeners();
   }
 
-  Future<bool> getImage() async {
-    // setBusy(true);
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    // setBusy(false);
-    if (image != null) {
-      selectedImage = File(image.path);
-      await appApiHelper.uploadImage(selectedImage!, (data) {
-        print(data);
-        urlImg = data;
-      });
-      notifyListeners();
-
-      return true;
-    }
-    return false;
+  getDate(BuildContext c) {
+    dateCurrent = "${now.year} - ${now.month} - ${now.day}";
+    getContext(c);
+    notifyListeners();
   }
 
-  createScheduleNew(BuildContext context, Function callback) async {
+  updateDuration(String s) {
+    duration = s;
+    notifyListeners();
+  }
+
+  updatePartner(String s) {
+    partnerName = s;
+    notifyListeners();
+  }
+
+  updateTimeslot(String s) {
+    timeSlot = s;
+    notifyListeners();
+  }
+
+  selectDate() async {
+    var pickedDate = await showDatePicker(
+        context: context!,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1800),
+        lastDate: DateTime(2100));
+
+    if (pickedDate != null) {
+      dateCurrent = DateFormat('yyyy-MM-dd').format(pickedDate);
+      notifyListeners();
+    }
+  }
+
+  createScheduleNew(BuildContext context) async {
     setBusy(true);
     final mail = await sharedPref.getMail();
-    await appApiHelper.createChedules('schedules', mail, urlImg, authorTF.text,
-        titleTF.text, descriptionTF.text, type, context, (data) {
+    await appApiHelper.createChedules('schedules', mail, dateCurrent, duration,
+        partnerName, timeSlot, context, (data) {
       print(data);
       setBusy(false);
       Fluttertoast.showToast(msg: 'Create Blog successfully');
-      authorTF.text = '';
-      titleTF.text = '';
-      descriptionTF.text = '';
-      callback.call(true);
-      // Navigator.pop(context);
+      String dateCurrent = "";
+      String duration = "10";
+      String partnerName = "Quynh";
+      String timeSlot = "8h - 12h";
+      Navigator.pop(context);
     });
     setBusy(false);
   }
 
-  choseType(int i) {
-    i == 0 ? type = 'Sports' : type = 'Movies';
-    notifyListeners();
-  }
+  // Future<bool> getImage() async {
+  //   // setBusy(true);
+  //   final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  //   // setBusy(false);
+  //   if (image != null) {
+  //     selectedImage = File(image.path);
+  //     await appApiHelper.uploadImage(selectedImage!, (data) {
+  //       print(data);
+  //       urlImg = data;
+  //     });
+  //     notifyListeners();
+
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
 }

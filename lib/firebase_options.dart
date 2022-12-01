@@ -44,40 +44,42 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCkCySkEG3Wj_fxqe6ERabEPmjN1jId3ws',
-    appId: '1:166533816328:web:2a4b3bdc526048de42b1bd',
-    messagingSenderId: '166533816328',
-    projectId: 'custom-map-f8b3a',
-    authDomain: 'custom-map-f8b3a.firebaseapp.com',
-    storageBucket: 'custom-map-f8b3a.appspot.com',
-    measurementId: 'G-XLSQCTQHQ4',
+    apiKey: 'AIzaSyD4XIptjnT8zQMLAtm_FzYnQljUykl4XPg',
+    appId: '1:737326598104:web:6720dcd4f659d95dcf14ad',
+    messagingSenderId: '737326598104',
+    projectId: 'blog-78b55',
+    authDomain: 'blog-78b55.firebaseapp.com',
+    storageBucket: 'blog-78b55.appspot.com',
+    measurementId: 'G-CHKV4XYM8G',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB3BWYyKbll9IdrmUlYafaRq2V56oe7fco',
-    appId: '1:166533816328:android:e44a1e82ecea4e9942b1bd',
-    messagingSenderId: '166533816328',
-    projectId: 'custom-map-f8b3a',
-    storageBucket: 'custom-map-f8b3a.appspot.com',
+    apiKey: 'AIzaSyCHC8H54Y9x82dW6ug1y5usTEcv7r7b858',
+    appId: '1:737326598104:android:a1d411dd959ab541cf14ad',
+    messagingSenderId: '737326598104',
+    projectId: 'blog-78b55',
+    storageBucket: 'blog-78b55.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCBLa0aoo11sP3DPKsR8QKL0XM-kGiPSiw',
-    appId: '1:166533816328:ios:54acb8751ae4c7a742b1bd',
-    messagingSenderId: '166533816328',
-    projectId: 'custom-map-f8b3a',
-    storageBucket: 'custom-map-f8b3a.appspot.com',
-    iosClientId: '166533816328-06vk8he88s9qnea5hr7r2kd4ugsfu8ar.apps.googleusercontent.com',
-    iosBundleId: 'com.example.myWallet',
+    apiKey: 'AIzaSyBUnc51BZvlivB_hjyaH3Ub6u_j6NlZIYE',
+    appId: '1:737326598104:ios:3d13ef84104fc324cf14ad',
+    messagingSenderId: '737326598104',
+    projectId: 'blog-78b55',
+    storageBucket: 'blog-78b55.appspot.com',
+    androidClientId: '737326598104-49b9gqj8e798u86qkjqiq4vt877tg6tf.apps.googleusercontent.com',
+    iosClientId: '737326598104-6k392kbs8ckl1vovjmb8elbvnsg3es2u.apps.googleusercontent.com',
+    iosBundleId: 'com.example.scheduleMeeting',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCBLa0aoo11sP3DPKsR8QKL0XM-kGiPSiw',
-    appId: '1:166533816328:ios:54acb8751ae4c7a742b1bd',
-    messagingSenderId: '166533816328',
-    projectId: 'custom-map-f8b3a',
-    storageBucket: 'custom-map-f8b3a.appspot.com',
-    iosClientId: '166533816328-06vk8he88s9qnea5hr7r2kd4ugsfu8ar.apps.googleusercontent.com',
-    iosBundleId: 'com.example.myWallet',
+    apiKey: 'AIzaSyBUnc51BZvlivB_hjyaH3Ub6u_j6NlZIYE',
+    appId: '1:737326598104:ios:3d13ef84104fc324cf14ad',
+    messagingSenderId: '737326598104',
+    projectId: 'blog-78b55',
+    storageBucket: 'blog-78b55.appspot.com',
+    androidClientId: '737326598104-49b9gqj8e798u86qkjqiq4vt877tg6tf.apps.googleusercontent.com',
+    iosClientId: '737326598104-6k392kbs8ckl1vovjmb8elbvnsg3es2u.apps.googleusercontent.com',
+    iosBundleId: 'com.example.scheduleMeeting',
   );
 }
