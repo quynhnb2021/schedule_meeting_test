@@ -29,8 +29,12 @@ class RegisterViewModel extends BaseViewModel {
           mailController.text.trim(), passwordController.text.trim());
       setBusy(false);
       Fluttertoast.showToast(msg: 'Register member successfully');
+      nameController.text = '';
+      mailController.text = '';
+      passwordController.text = '';
       Navigator.of(context).pop();
     });
+
     setBusy(false);
   }
 }

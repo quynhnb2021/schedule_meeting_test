@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>737326598104-6k392kbs8ckl1vovjmb8elbvnsg3es2u.apps.googleusercontent.com</string>
+	<string>918091043152-kff3c45jgqrk8m574ggg5a7g082v0b4q.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.737326598104-6k392kbs8ckl1vovjmb8elbvnsg3es2u</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>737326598104-49b9gqj8e798u86qkjqiq4vt877tg6tf.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.918091043152-kff3c45jgqrk8m574ggg5a7g082v0b4q</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBUnc51BZvlivB_hjyaH3Ub6u_j6NlZIYE</string>
+	<string>AIzaSyAD4RIgv3CZTgcvffZ7NPnfZD6N4Y8jnTY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>737326598104</string>
+	<string>918091043152</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.scheduleMeeting</string>
+	<string>com.example.schedules</string>
 	<key>PROJECT_ID</key>
-	<string>blog-78b55</string>
+	<string>demosignin-b4e38</string>
 	<key>STORAGE_BUCKET</key>
-	<string>blog-78b55.appspot.com</string>
+	<string>demosignin-b4e38.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:737326598104:ios:3d13ef84104fc324cf14ad</string>
+	<string>1:918091043152:ios:6825e3140e3bca296cdc55</string>
 </dict>
 </plist>

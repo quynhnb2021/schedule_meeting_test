@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,14 +13,21 @@ import 'package:schedule_meeting/ui/setting_pages/setting/setting_view_model.dar
 import 'package:schedule_meeting/ui/themes/theme_dark.dart';
 import 'package:schedule_meeting/ui/themes/theme_light.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io' show Platform;
 
 //flutter pub run build_runner build --delete-conflicting-outputs
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      // options: DefaultFirebaseOptions.currentPlatform,
-      );
+
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
+
   // Ideal time to initialize
   // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   // await dotenv.load(fileName: kReleaseMode ? ".env-release" : ".env-dev");

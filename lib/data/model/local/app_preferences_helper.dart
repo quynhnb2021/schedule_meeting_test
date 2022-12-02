@@ -11,6 +11,7 @@ const String prefThemeDark = 'prefThemeDark';
 const String prefThemeAuto = 'prefThemeAuto';
 const String prefLanguage = 'prefLanguage';
 const String prefMail = 'prefMail';
+const String prefName = 'prefName';
 
 class AppPreferencesHelper implements PreferencesHelper {
   // @override
@@ -116,5 +117,18 @@ class AppPreferencesHelper implements PreferencesHelper {
   Future<void> saveMail(String value) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(prefMail, value);
+  }
+
+  @override
+  Future<String> getNameUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    String name = prefs.getString(prefName) ?? '';
+    return name;
+  }
+
+  @override
+  Future<void> saveNameUser(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(prefName, value);
   }
 }

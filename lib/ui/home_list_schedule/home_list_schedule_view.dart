@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:schedule_meeting/route/app_route.gr.dart';
 import 'package:schedule_meeting/ui/base/common/app_func.dart';
 import 'package:schedule_meeting/ui/base/common/network_image.dart';
@@ -15,20 +17,23 @@ import 'package:schedule_meeting/ui/base/base_view.dart';
 import 'package:schedule_meeting/ui/themes/app_color.dart';
 
 class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
-  // DisplayProfileResponse inforProfile;
   const HomeScheduleView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
-    final HomeScheduleViewModel blogViewModel =
+    final HomeScheduleViewModel viewModel =
         ref.watch(homeScheduleViewModelProvider);
     useEffectAsync(() async {
-      await blogViewModel.getBlogs(null, null);
+      await viewModel.getBlogs(null);
     });
     return Scaffold(
       appBar: AppBarCustom(
-        height: 0,
+        title: Text(
+          'List Schedules',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        showBack: false,
       ),
       body: SafeArea(
         child: ContainerWithLoading(
@@ -40,30 +45,33 @@ class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
                     ScrollViewKeyboardDismissBehavior.manual,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: SearchView(
-                        onActionDone: (s) {
-                          blogViewModel.getBlogs(null, s);
-                        },
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: blogViewModel.type == ''
-                          ? AppColors.backgroundColorButton
-                          : Theme.of(context).backgroundColor,
-                      child: TextButton(
-                        onPressed: () {
-                          // blogViewModel.choseType(2);
-                        },
-                        child: Text("List Schedules",
-                            style: Theme.of(context).textTheme.titleMedium),
-                      ),
-                    ),
-                    blogViewModel.schedulesStream != null
+                    // Padding(
+                    //   padding: const EdgeInsets.all(16.0),
+                    //   child: SearchView(
+                    //     onActionDone: (s) {
+                    //       blogViewModel.getBlogs(null, s);
+                    //     },
+                    //   ),
+                    // ),
+                    // Container(
+                    //   width: MediaQuery.of(context).size.width,
+                    //   color: viewModel.type == ''
+                    //       ? AppColors.backgroundColorButton
+                    //       : Theme.of(context).backgroundColor,
+                    //   child: TextButton(
+                    //     onPressed: () {
+                    //       // blogViewModel.choseType(2);
+                    //     },
+                    //     child: Text("List Schedules",
+                    //         style: Theme.of(context)
+                    //             .textTheme
+                    //             .titleMedium!
+                    //             .copyWith(color: Colors.black)),
+                    //   ),
+                    // ),
+                    viewModel.schedulesStream != null
                         ? StreamBuilder<QuerySnapshot>(
-                            stream: blogViewModel.schedulesStream,
+                            stream: viewModel.schedulesStream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<QuerySnapshot> snapshot) {
                               if (snapshot.hasError) {
@@ -88,11 +96,17 @@ class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
                                     .map((DocumentSnapshot document) {
                                   Map<String, dynamic> data =
                                       document.data()! as Map<String, dynamic>;
+                                  viewModel.datas.add(Meeting(
+                                      date: data['date'],
+                                      duration: data['duration'],
+                                      partner: data['partnerName'],
+                                      timeSlot: data['timeSlot']));
                                   return SchedulesTile(
                                     date: data['date'],
                                     duration: data['duration'],
                                     partnerName: data['partnerName'] ?? '',
                                     timeSlot: data['timeSlot'],
+                                    i: 0,
                                   );
                                 }).toList(),
                               );
@@ -100,7 +114,7 @@ class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
                           )
                         : Container(
                             alignment: Alignment.center,
-                            child: CircularProgressIndicator(),
+                            child: const CircularProgressIndicator(),
                           ),
                   ],
                 )),
@@ -109,7 +123,8 @@ class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          router.push(const CreateScheduleRoute());
+          // print(viewModel.datas);
+          router.push(CreateScheduleRoute(datas: viewModel.datas));
         },
         tooltip: 'Add Schedule task',
         child: const Icon(Icons.add),
@@ -130,24 +145,31 @@ class HomeScheduleView extends BaseView<HomeScheduleViewModel> {
 }
 
 class SchedulesTile extends StatelessWidget {
-  String date, duration, partnerName, timeSlot;
-  SchedulesTile(
-      {required this.date,
-      required this.duration,
-      required this.partnerName,
-      required this.timeSlot});
+  final String date, duration, partnerName, timeSlot;
+  final int i;
+  SchedulesTile({
+    required this.date,
+    required this.duration,
+    required this.partnerName,
+    required this.timeSlot,
+    required this.i,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    final n = Random().nextInt(100) + 10;
     return Container(
-      margin: EdgeInsets.only(bottom: 16),
-      height: 150,
+      margin: const EdgeInsets.only(bottom: 16),
+      height: 100,
       child: Stack(
         children: <Widget>[
           Container(
-            height: 170,
+            height: 100,
             decoration: BoxDecoration(
-                color: Colors.black45.withOpacity(0.3),
+                color: n.isEven
+                    ? Color(0xFF00FF19).withOpacity(0.8)
+                    : Color(0xFF3F00C3).withOpacity(0.8),
                 borderRadius: BorderRadius.circular(6)),
           ),
           Container(
@@ -156,27 +178,51 @@ class SchedulesTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  date,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  duration,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  partnerName,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text(timeSlot)
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            partnerName,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            '${duration} minutes',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 2,
+                      height: 80,
+                      color: AppColors.bgButtonDarkColor,
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            date,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            timeSlot,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
           )

@@ -33,7 +33,7 @@ class HomeView extends BaseView<HomeViewModel> {
           // const OverviewView(),
           // const FleetView(),
           const HomeScheduleView(),
-          const ScheduleDateView(),
+          // const ScheduleDateView(),
 
           const SettingView(),
         ][idMain.value],

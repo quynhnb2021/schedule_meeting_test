@@ -20,6 +20,13 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+
+  // }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 16),
@@ -52,7 +59,7 @@ class _SearchViewState extends State<SearchView> {
                   isDense: true,
                   contentPadding: EdgeInsets.zero,
                   border: InputBorder.none,
-                  hintText: "Search mail ...",
+                  hintText: "Typing ...",
                   hintStyle: Theme.of(context).textTheme.labelMedium),
               style: Theme.of(context).textTheme.titleSmall,
             ),

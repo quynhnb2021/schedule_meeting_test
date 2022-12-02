@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:schedule_meeting/ui/base/common/app_func.dart';
 import 'package:schedule_meeting/ui/base/hook/use_router.dart';
 import 'package:schedule_meeting/ui/themes/text_styles.dart';
 
@@ -38,6 +39,7 @@ class AppBarCustom extends HookConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    double width = MediaQuery.of(context).size.width;
     final router = useRouter();
     return AppBar(
         leadingWidth: 100,
@@ -51,7 +53,9 @@ class AppBarCustom extends HookConsumerWidget implements PreferredSizeWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Padding(padding: EdgeInsets.only(left: 20)),
+                    Padding(
+                        padding: EdgeInsets.only(
+                            left: AppFunc().responsiveUI(width))),
                     Icon(
                       Icons.arrow_back,
                       color: Theme.of(context).primaryColor,

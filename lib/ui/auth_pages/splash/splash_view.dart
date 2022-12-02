@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:schedule_meeting/data/model/local/app_preferences_helper.dart';
 import 'package:schedule_meeting/route/app_route.gr.dart';
+import 'package:schedule_meeting/ui/base/common/app_func.dart';
 import 'package:schedule_meeting/ui/base/hook/use_effect_async.dart';
 import 'package:schedule_meeting/ui/base/hook/use_router.dart';
 import 'package:schedule_meeting/ui/themes/text_styles.dart';
@@ -12,6 +14,7 @@ class SplashView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    double width = MediaQuery.of(context).size.width;
     final router = useRouter();
     // final SplashViewModel viewModel = ref.watch(splashViewModelProvider);
 
@@ -19,7 +22,11 @@ class SplashView extends HookConsumerWidget {
       final prefs = await SharedPreferences.getInstance();
       final mail = prefs.getString(prefMail) ?? '';
       if (mail.isNotEmpty) {
-        router.push(const HomeRoute());
+        if (kIsWeb) {
+          router.push(const LoginRoute());
+        } else {
+          router.push(const HomeRoute());
+        }
       } else {
         router.push(const LoginRoute());
       }
@@ -32,10 +39,11 @@ class SplashView extends HookConsumerWidget {
 
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+        padding: EdgeInsets.symmetric(
+            horizontal: AppFunc().responsiveUI(width), vertical: 15),
         child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -58,11 +66,11 @@ class SplashView extends HookConsumerWidget {
                 style: TextStyles.regularText14.w400.colorPrimaryGray,
               ),
               const Spacer(),
-              Text(
-                "Copyright © 2022-2023 Schedule a Meeting App\n All Rights Reserved.",
-                textAlign: TextAlign.center,
-                style: TextStyles.regularText14.w400.colorPrimaryGray,
-              ),
+              // Text(
+              //   "Copyright © 2022-2023 Schedule a Meeting App\n All Rights Reserved.",
+              //   textAlign: TextAlign.center,
+              //   style: TextStyles.regularText14.w400.colorPrimaryGray,
+              // ),
             ]),
       ),
     );

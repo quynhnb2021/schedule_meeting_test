@@ -16,7 +16,7 @@ class LoginViewModel extends BaseViewModel {
 
   updateUserNamePass(String mail, String pass) {
     usernameController.text = mail;
-    passwordController.text = pass;
+    // passwordController.text = pass;
   }
 
   bool checkInputsNotExistEmpty() {
@@ -42,10 +42,14 @@ class LoginViewModel extends BaseViewModel {
         (data) async {
       print(data.user.email);
       await sharedPref.saveMail(data.user.email);
+      await sharedPref.saveNameUser(data.user.displayName);
       setBusy(false);
       Fluttertoast.showToast(msg: 'Login successfully');
+      usernameController.text = '';
+      passwordController.text = '';
       callBack.call();
     });
+
     setBusy(false);
   }
 

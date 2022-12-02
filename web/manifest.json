@@ -1,6 +1,6 @@
 {
-    "name": "schedule_meeting",
-    "short_name": "schedule_meeting",
+    "name": "schedule_meeting_test",
+    "short_name": "schedule_meeting_test",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

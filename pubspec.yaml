@@ -91,6 +91,8 @@ dependencies:
 
   time_planner: ^0.1.1
 
+  flutter_screenutil: ^5.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -152,11 +152,8 @@ class FirebaseManager extends FirebaseHelper {
   @override
   Future<void> getSchedule(
       String name, String? type, String? mail, Function? callBackData) async {
-    Stream collectionStream = await db
-        .collection('datas')
-        .doc('bao@gmail.com')
-        .collection(name)
-        .snapshots();
+    Stream collectionStream =
+        db.collection('datas').doc(mail).collection(name).snapshots();
     callBackData?.call(collectionStream);
     //   if (mail == null) {
     //     if (type == null) {

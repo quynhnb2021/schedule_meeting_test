@@ -20,6 +20,8 @@ import 'package:schedule_meeting/ui/auth_pages/splash/splash_view.dart' as _i1;
 import 'package:schedule_meeting/ui/create_schedule/create_schedule_view.dart'
     as _i6;
 import 'package:schedule_meeting/ui/home/home_view.dart' as _i7;
+import 'package:schedule_meeting/ui/home_list_schedule/home_list_schedule_view_model.dart'
+    as _i10;
 import 'package:schedule_meeting/ui/setting_pages/general_pages/dart_mode/dart_mode_view.dart'
     as _i5;
 import 'package:schedule_meeting/ui/setting_pages/setting/setting_view.dart'
@@ -62,9 +64,13 @@ class AppRouter extends _i8.RootStackRouter {
       );
     },
     CreateScheduleRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateScheduleRouteArgs>();
       return _i8.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i6.CreateScheduleView(),
+        child: _i6.CreateScheduleView(
+          datas: args.datas,
+          key: args.key,
+        ),
       );
     },
     HomeRoute.name: (routeData) {
@@ -173,14 +179,36 @@ class DartModeRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.CreateScheduleView]
-class CreateScheduleRoute extends _i8.PageRouteInfo<void> {
-  const CreateScheduleRoute()
-      : super(
+class CreateScheduleRoute extends _i8.PageRouteInfo<CreateScheduleRouteArgs> {
+  CreateScheduleRoute({
+    required List<_i10.Meeting> datas,
+    _i9.Key? key,
+  }) : super(
           CreateScheduleRoute.name,
           path: '/create-schedule-view',
+          args: CreateScheduleRouteArgs(
+            datas: datas,
+            key: key,
+          ),
         );
 
   static const String name = 'CreateScheduleRoute';
+}
+
+class CreateScheduleRouteArgs {
+  const CreateScheduleRouteArgs({
+    required this.datas,
+    this.key,
+  });
+
+  final List<_i10.Meeting> datas;
+
+  final _i9.Key? key;
+
+  @override
+  String toString() {
+    return 'CreateScheduleRouteArgs{datas: $datas, key: $key}';
+  }
 }
 
 /// generated route for

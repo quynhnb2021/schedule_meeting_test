@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:schedule_meeting/ui/base/base_view_model.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:schedule_meeting/ui/home_list_schedule/home_list_schedule_view_model.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:intl/intl.dart';
 
@@ -18,12 +19,19 @@ class CreateScheduleViewViewModel extends BaseViewModel {
   String dateCurrent = "";
   String duration = "10";
   String partnerName = "Quynh";
-  String timeSlot = "8h - 12h";
+  String timeSlot = "08:00 - 12:00";
   final partners = ["Quynh", "Long", "Giang", "Lan", "Ngoc", "Anh", "Kaka"];
   final now = DateTime.now();
   BuildContext? context;
   final durations = ["15", "30", "60", "120", "180", "240", "300"];
-  final timeSlots = ["4h - 8h", "8h - 12h", "12h - 16h", "16h - 20h"];
+  final timeSlots = [
+    "04:00 - 08:00",
+    "08:00 - 12:00",
+    "12:00 - 16:30",
+    "16:30 - 17:00",
+    "17:30 - 20:00"
+  ];
+  TextEditingController searchTF = TextEditingController();
 
   getContext(BuildContext c) {
     context = c;
@@ -64,7 +72,17 @@ class CreateScheduleViewViewModel extends BaseViewModel {
     }
   }
 
-  createScheduleNew(BuildContext context) async {
+  createScheduleNew(BuildContext context, List<Meeting> list) async {
+    final check = list
+        .where((item) =>
+            item.date == dateCurrent &&
+            item.partner == partnerName &&
+            item.timeSlot == timeSlot)
+        .isNotEmpty;
+    if (check) {
+      Fluttertoast.showToast(msg: 'A meeting exists, Please try another time.');
+      return;
+    }
     setBusy(true);
     final mail = await sharedPref.getMail();
     await appApiHelper.createChedules('schedules', mail, dateCurrent, duration,
@@ -79,6 +97,14 @@ class CreateScheduleViewViewModel extends BaseViewModel {
       Navigator.pop(context);
     });
     setBusy(false);
+  }
+
+  updateTextSearch(String s) {
+    searchTF.value = TextEditingValue(
+      text: s,
+      selection: TextSelection.collapsed(offset: s.length),
+    );
+    notifyListeners();
   }
 
   // Future<bool> getImage() async {

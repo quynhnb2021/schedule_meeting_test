@@ -13,4 +13,6 @@ abstract class PreferencesHelper {
 
   Future<void> saveMail(String value);
   Future<void> getMail();
+  Future<void> saveNameUser(String value);
+  Future<void> getNameUser();
 }

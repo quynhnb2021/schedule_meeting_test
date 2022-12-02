@@ -15,7 +15,7 @@ class SettingViewModel extends BaseViewModel {
   }
 
   getUserInfor() async {
-    final data = await sharedPref.getMail();
+    final data = await sharedPref.getNameUser();
     mail = data;
     notifyListeners();
   }

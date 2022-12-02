@@ -21,11 +21,20 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return android;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for android - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,42 +53,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD4XIptjnT8zQMLAtm_FzYnQljUykl4XPg',
-    appId: '1:737326598104:web:6720dcd4f659d95dcf14ad',
-    messagingSenderId: '737326598104',
-    projectId: 'blog-78b55',
-    authDomain: 'blog-78b55.firebaseapp.com',
-    storageBucket: 'blog-78b55.appspot.com',
-    measurementId: 'G-CHKV4XYM8G',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCHC8H54Y9x82dW6ug1y5usTEcv7r7b858',
-    appId: '1:737326598104:android:a1d411dd959ab541cf14ad',
-    messagingSenderId: '737326598104',
-    projectId: 'blog-78b55',
-    storageBucket: 'blog-78b55.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBUnc51BZvlivB_hjyaH3Ub6u_j6NlZIYE',
-    appId: '1:737326598104:ios:3d13ef84104fc324cf14ad',
-    messagingSenderId: '737326598104',
-    projectId: 'blog-78b55',
-    storageBucket: 'blog-78b55.appspot.com',
-    androidClientId: '737326598104-49b9gqj8e798u86qkjqiq4vt877tg6tf.apps.googleusercontent.com',
-    iosClientId: '737326598104-6k392kbs8ckl1vovjmb8elbvnsg3es2u.apps.googleusercontent.com',
-    iosBundleId: 'com.example.scheduleMeeting',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBUnc51BZvlivB_hjyaH3Ub6u_j6NlZIYE',
-    appId: '1:737326598104:ios:3d13ef84104fc324cf14ad',
-    messagingSenderId: '737326598104',
-    projectId: 'blog-78b55',
-    storageBucket: 'blog-78b55.appspot.com',
-    androidClientId: '737326598104-49b9gqj8e798u86qkjqiq4vt877tg6tf.apps.googleusercontent.com',
-    iosClientId: '737326598104-6k392kbs8ckl1vovjmb8elbvnsg3es2u.apps.googleusercontent.com',
-    iosBundleId: 'com.example.scheduleMeeting',
+    apiKey: 'AIzaSyANQRt0o5XbmNmOnNN-D4Ac_ukHQoj0gCw',
+    appId: '1:918091043152:web:86b2ceaef72874236cdc55',
+    messagingSenderId: '918091043152',
+    projectId: 'demosignin-b4e38',
+    authDomain: 'demosignin-b4e38.firebaseapp.com',
+    storageBucket: 'demosignin-b4e38.appspot.com',
+    measurementId: 'G-MZC02QET5L',
   );
 }

@@ -19,6 +19,7 @@ class SettingView extends BaseView<SettingViewModel> {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    double width = MediaQuery.of(context).size.width;
     final router = useRouter();
     final SettingViewModel viewModel = ref.watch(settingViewModelProvider);
     useEffectAsync(() async {
@@ -50,77 +51,82 @@ class SettingView extends BaseView<SettingViewModel> {
         height: 0,
       ),
       body: SafeArea(
-        child: ContainerWithLoading(
-          provider: settingViewModelProvider,
-          child: GestureDetector(
-            onTap: (() => AppFunc.hideKeyboard(context)),
-            child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
-              child: Column(
-                children: [
-                  CustomItemSetting(
-                    margin: EdgeInsets.only(top: 100, left: 24, right: 24),
-                    icon: const Icon(
-                      Icons.assignment_ind,
-                      size: 28,
+        child: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: AppFunc().responsiveUI(width)),
+          child: ContainerWithLoading(
+            provider: settingViewModelProvider,
+            child: GestureDetector(
+              onTap: (() => AppFunc.hideKeyboard(context)),
+              child: SingleChildScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.manual,
+                child: Column(
+                  children: [
+                    CustomItemSetting(
+                      margin: EdgeInsets.only(top: 100, left: 24, right: 24),
+                      icon: const Icon(
+                        Icons.assignment_ind,
+                        size: 28,
+                      ),
+                      title: "User: ",
+                      value: viewModel.mail,
+                      onTap: () {},
                     ),
-                    title: "User: ",
-                    value: viewModel.mail,
-                    onTap: () {},
-                  ),
-                  // CustomItemSetting(
-                  //   icon: const Icon(
-                  //     Icons.mode,
-                  //     size: 28,
-                  //   ),
-                  //   title: "General",
-                  //   onTap: () {
-                  //     router.navigate(const GeneralRoute());
-                  //   },
-                  // ),
-                  const CustomItemSetting(
-                    icon: Icon(
-                      Icons.info,
-                      size: 28,
+                    // CustomItemSetting(
+                    //   icon: const Icon(
+                    //     Icons.mode,
+                    //     size: 28,
+                    //   ),
+                    //   title: "General",
+                    //   onTap: () {
+                    //     router.navigate(const GeneralRoute());
+                    //   },
+                    // ),
+                    const CustomItemSetting(
+                      icon: Icon(
+                        Icons.info,
+                        size: 28,
+                      ),
+                      title: "Version ",
+                      value: '1.0.0',
                     ),
-                    title: "Version ",
-                    value: '1.0.0',
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Dark Mode',
-                            style: Theme.of(context).textTheme.titleMedium,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Dark Mode',
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              CupertinoSwitch(
-                                value: viewModel.isDarkModeActive,
-                                onChanged: (value) {
-                                  viewModel.onChangedDarkMode(value);
-                                },
-                              ),
-                            ],
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                CupertinoSwitch(
+                                  value: viewModel.isDarkModeActive,
+                                  onChanged: (value) {
+                                    viewModel.onChangedDarkMode(value);
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 32, horizontal: 24.0),
-                    child: Button(
-                      title: "Logout",
-                      onPress: onLogout,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 32, horizontal: 24.0),
+                      child: Button(
+                        title: "Logout",
+                        onPress: onLogout,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

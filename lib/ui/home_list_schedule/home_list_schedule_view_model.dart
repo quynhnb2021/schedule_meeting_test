@@ -8,11 +8,14 @@ class HomeScheduleViewModel extends BaseViewModel {
   List<ScheduleResponse>? dataSchedules;
   String type = '';
   Stream<QuerySnapshot>? schedulesStream;
-  getBlogs(String? type, String? mail) async {
+  List<Meeting> datas = [];
+  getBlogs(String? type) async {
+    final mail = await sharedPref.getMail();
     setBusy(true);
     await appApiHelper.getSchedule('schedules', type, mail, (data) {
       print(data);
       schedulesStream = data;
+      notifyListeners();
       setBusy(false);
     });
     setBusy(false);
@@ -37,4 +40,14 @@ class HomeScheduleViewModel extends BaseViewModel {
   //       break;
   //   }
   // }
+}
+
+class Meeting {
+  String date, duration, partner, timeSlot;
+
+  Meeting(
+      {required this.date,
+      required this.duration,
+      required this.partner,
+      required this.timeSlot});
 }
